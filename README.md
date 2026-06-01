@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Poetry Archive · 诗集
 
-## Getting Started
+A contemplative personal poetry archive — one poem published each year. Built with Next.js, TypeScript, Tailwind CSS, Framer Motion, and Lucide React.
 
-First, run the development server:
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Note:** Next.js 16 requires Node.js ≥ 20.9. Upgrade Node if `npm run build` fails on engine checks.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses **Tailwind CSS v3** (pure JavaScript, no native `oxide` binary) to avoid Windows install issues.
 
-## Learn More
+If you still see a “native binding” error:
 
-To learn more about Next.js, take a look at the following resources:
+1. Stop the dev server (`Ctrl+C` in the terminal running `npm run dev`).
+2. Delete `.next`, then `node_modules` and `package-lock.json`.
+3. Run `npm install`, then `npm run dev`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Adding a new year
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Edit `src/data/poems.ts` only — no UI changes required:
 
-## Deploy on Vercel
+```ts
+2028: {
+  fr: {
+    title: "Your title",
+    content: `Line one\nLine two`,
+  },
+  zh: {
+    title: "标题",
+    content: `第一行\n第二行`,
+  },
+},
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Line breaks in `content` are preserved exactly.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project structure
+
+- `src/data/poems.ts` — poem content by year and language
+- `src/components/` — archive UI
+- `src/components/decorations/` — subtle SVG plum blossom, ink stroke, petals
+
+## Scripts
+
+- `npm run dev` — development server
+- `npm run build` — production build
+- `npm run start` — serve production build
+# poetry
